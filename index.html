@@ -213,6 +213,51 @@
             .portfolio-section { display: none; } /* 打印时隐藏视频部分 */
             .profile-container { border-radius: 0; padding: 0; background: none; box-shadow: none; width: 100px; height: 100px; border: 1px solid #ccc; }
             .profile-img { border: none; }
+            
+        }
+        @media screen and (max-width: 768px) {
+            /* 1. 收缩整体边距，手机上不需要那么多留白 */
+            .container {
+                padding: 20px 15px; /* 上下20px，左右15px */
+                max-width: 100%;
+            }
+
+            /* 2. 名字和标题改小，防止换行太难看 */
+            h1 { font-size: 2.2rem; }
+            .title { font-size: 1rem; letter-spacing: 1px; }
+            h2 { font-size: 1.3rem; margin-top: 40px; margin-bottom: 20px; }
+            .portfolio-category-title { font-size: 1.6rem; margin-top: 40px; }
+
+            /* 3. 工作经历优化：公司名和时间分两行显示 */
+            .job-header {
+                flex-direction: column; /* 垂直排列 */
+                align-items: flex-start; /* 左对齐 */
+                gap: 4px; /* 稍微加点间距 */
+            }
+            .job-header .date {
+                font-size: 0.85rem;
+                opacity: 0.8;
+                margin-bottom: 5px; /* 让时间下面留点空 */
+            }
+
+            /* 4. 强制视频和技能卡片在手机上占满宽度 (单列显示) */
+            .video-grid, .skill-grid {
+                grid-template-columns: 1fr !important; /* 强制1列 */
+                gap: 20px;
+            }
+
+            /* 5. 联系方式微调 */
+            .contact-info {
+                font-size: 0.85rem;
+                gap: 10px; /* 间距缩小 */
+                flex-direction: column; /* 手机上竖着排联系方式可能更清楚，或者保持 wrap */
+            }
+            
+            /* 6. 照片稍微缩小一点 */
+            .profile-container {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
