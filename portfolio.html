@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>何星宇 | 游戏音频设计师 Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a; /* 极深黑 */
+            --card-bg: #141414; /* 卡片黑 */
+            --accent: #00f2ff; /* 赛博蓝高亮 */
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --border: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 100px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header / 简历头部 */
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        /* 照片样式 - 赛博朋克风 */
+        .profile-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            padding: 4px; /* 光环宽度 */
+            background: linear-gradient(135deg, var(--accent), #0051ff); /* 赛博光环 */
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4); /* 发光效果 */
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color); /* 内圈隔离 */
+            background-color: #222;
+            display: block;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #fff, var(--text-dim));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* 模块通用标题 */
+        h2 {
+            font-size: 1.5rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            margin: 60px 0 30px 0;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+
+        /* 简历内容排版 */
+        .resume-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-item strong { color: #fff; display: block; margin-bottom: 5px; }
+        .skill-item p { color: var(--text-dim); font-size: 0.95rem; text-align: justify; }
+
+        .job-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #222; }
+        .job-item:last-child { border-bottom: none; margin-bottom: 0; }
+        .job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px; }
+        .company { font-size: 1.2rem; font-weight: bold; }
+        .role { color: var(--accent); font-style: italic; margin-right: 10px; }
+        .date { font-family: monospace; color: #666; }
+        
+        ul.job-desc { padding-left: 20px; color: var(--text-dim); }
+        ul.job-desc li { margin-bottom: 8px; }
+
+        /* 作品集部分 (PORTFOLIO) */
+        .portfolio-section {
+            margin-top: 80px;
+        }
+        
+        .portfolio-category-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 50px 0 30px 0;
+            color: #fff;
+            position: relative;
+        }
+        
+        .portfolio-category-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            margin: 15px auto;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.2s ease;
+        }
+
+        .video-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            background: #000;
+        }
+
+        /* 确保 iframe 填满容器 */
+        .video-wrapper iframe, .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-title {
+            font-weight: bold;
+            color: #eee;
+            margin-bottom: 5px;
+        }
+
+        .video-desc {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* 打印适配 */
+        @media print {
+            body { background: #fff; color: #000; }
+            .container { max-width: 100%; padding: 0; }
+            header, h2, .resume-section, .job-item { border-color: #000; color: #000 !important; background: none; }
+            h1 { background: none; -webkit-text-fill-color: #000; }
+            .title, .role, strong { color: #000 !important; }
+            .portfolio-section { display: none; } /* 打印时隐藏视频部分 */
+            .profile-container { border-radius: 0; padding: 0; background: none; box-shadow: none; width: 100px; height: 100px; border: 1px solid #ccc; }
+            .profile-img { border: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="profile-container">
+            <img src="profile_cyber.jpg" alt="何星宇照片" class="profile-img">
+        </div>
+        <h1>何星宇</h1>
+        <div class="title">游戏音频设计师 | Game Audio Designer</div>
+        <div class="contact-info">
+            <span>📞 158-2763-0696</span>
+            <span>📧 972313497@qq.com</span>
+            <span>📍 中国成都</span>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <a href="#portfolio" style="
+                display: inline-block;
+                padding: 10px 30px;
+                border: 1px solid var(--accent);
+                color: var(--accent);
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            " 
+            onmouseover="this.style.background='var(--accent)'; this.style.color='#000'"
+            onmouseout="this.style.background='transparent'; this.style.color='var(--accent)'">
+                ⬇️ 跳转至作品集 (View Portfolio)
+            </a>
+    </header>
+
+    <section>
+        <h2>专业技能 Skills</h2>
+        <div class="resume-section">
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <h3>1. 核心音频技术</h3>
+                    <strong>Middleware:</strong>
+                    <p>精通 Wwise。擅长 Profiler 性能优化、Soundcaster 调试及 HDR/Side-chain 等动态混音逻辑设计。</p>
+                    <br>
+                    <strong>DAW & Tools:</strong>
+                    <p>精通 Reaper (主要工具) 与 Ableton Live, Pro Tools 等主流 DAW。熟练使用各类合成器 (Serum 2/Phase Plant) 进行技能与 UI 音效设计，熟练使用 Krotos 等插件进行怪兽音效设计。</p>
+                    <br>
+                    <strong>Game Engine:</strong>
+                    <p>熟悉 Unity 引擎，能够进行音频组件挂载及资源管理等基础操作。</p>
+                    <br>
+                    <strong>Record & Foley:</strong>
+                    <p>熟悉录音棚硬件操作，能够进行拟音以及人声录制工作。</p>
+                </div>
+
+                <div class="skill-item">
+                    <h3>2. AI 增强工作流 & 3. 综合创作</h3>
+                    <strong>AI Workflow:</strong>
+                    <p>• 熟练利用 <strong>Suno AI</strong> 进行风格探索，通过 Prompt 精准控制曲风，快速产出 Reference。</p>
+                    <p>• 利用 <strong>LLM (ChatGPT/Gemini)</strong> 辅助编写 Reaper Lua 脚本与 Wwise 批处理工具。</p>
+                    <p>• 使用 <strong>Stable Audio</strong> 生成复杂的环境纹理与拟音素材。</p>
+                    <br>
+                    <strong>Music & Creative:</strong>
+                    <p>具备词曲创作、编曲、混音及母带处理的全流程能力，有总体音频风格化设计能力。</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>工作经历 Work Experience</h2>
+        <div class="resume-section">
+            <div class="job-item">
+                <div class="job-header">
+                    <div>
+                        <span class="company">成都街灯文化传播有限公司</span> 
+                        <span class="role">| 创始人 / 制作人</span>
+                    </div>
+                    <span class="date">2024.10 - 至今</span>
+                </div>
+                <ul class="job-desc">
+                    <li><strong>全流程音乐制作:</strong> 创立独立音乐厂牌，主导多张专辑的策划与制作。极大提升了对不同音乐风格及合成器 (Synthesizers) 的驾驭能力以及整体音乐风格的企划能力。</li>
+                    <li><strong>视觉统筹:</strong> 自编自导 MV 拍摄与剪辑，协调视觉艺术与听觉体验的统一，锻炼了跨领域的项目策划、交流与执行能力。</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header">
+                    <div>
+                        <span class="company">成都乐狗科技 (Legou Games)</span>
+                        <span class="role">| 游戏音效设计师</span>
+                    </div>
+                    <span class="date">2021.07 - 2024.10</span>
+                </div>
+                <div style="margin-bottom:10px; font-weight:bold; color:#eee;">项目：《万龙觉醒》(Call of Dragons) - SLG</div>
+                <ul class="job-desc">
+                    <li><strong>架构搭建 (0 to 1):</strong> 主导制定音频风格指南 (Style Guide)，并从零搭建 Wwise 工程架构，确保了后续大规模资产管理的规范性。</li>
+                    <li><strong>动态混音:</strong> 设计并实现复杂的 HDR 与 State 混音系统，有效解决了千人同屏战斗时的听觉掩蔽问题。</li>
+                    <li><strong>核心资产制作:</strong> 负责全量级音效制作。设计了具有高辨识度的魔法与种族技能音效；不同界面的环境音制作；统筹外包对接与多语言语音优化。</li>
+                </ul>
+                <div style="margin-top:15px; margin-bottom:10px; font-weight:bold; color:#eee;">项目：《万国觉醒》(Rise of Kingdoms) - SLG</div>
+                <ul class="job-desc">
+                    <li><strong>版本维护:</strong> 独立负责成熟期项目的版本音频迭代，保证在线运营的高稳定性。</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>教育背景 Education</h2>
+        <div class="resume-section">
+            <div class="job-header">
+                <div>
+                    <span class="company">华中科技大学 (985/211)</span>
+                    <span class="role">| 电子信息系 (本科)</span>
+                </div>
+                <span class="date">2017.09 - 2021.07</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-section" id="portfolio">
+        <h1 class="portfolio-category-title">PORTFOLIO 作品集</h1>
+
+        <h3>一、游戏音效 (Game Audio)</h3>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1gp421y7Ug&page=1&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">1. 游戏 CG 音效制作</div>
+                    <div class="video-desc">Redesign / Original Sound Design</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="game_action.mp4" type="video/mp4">
+                        您的浏览器不支持 Video 标签。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">2. 角色动作音效</div>
+                    <div class="video-desc">Character Movement & Combat Skills</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="game_ui.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">3. 游戏 UI 音效</div>
+                    <div class="video-desc">User Interface Feedback Design</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="game_amb_1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">4. 游戏氛围音效 (Ambience 1)</div>
+                    <div class="video-desc">Environmental Textures</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="game_amb_2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">4. 游戏氛围音效 (Ambience 2)</div>
+                    <div class="video-desc">Atmosphere Design</div>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="game_foley_1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">5. 拟音与录音 (Foley 1)</div>
+                    <div class="video-desc">某一次whoosh录制</div>
+                </div>
+            </div>
+
+             <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="game_foley_2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">5. 拟音与录音 (Foley 2)</div>
+                    <div class="video-desc">CG人声录制</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>二、影视音效 (Linear Media)</h3>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Fc411L7LX&page=1&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">蔡徐坤《Phenomenon》</div>
+                    <div class="video-desc">Full Mix (Music + SFX)</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="kun_sfx.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">蔡徐坤《Phenomenon》(SFX Only)</div>
+                    <div class="video-desc">Sound Design Breakdown (节选了我做的部分)</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>三、个人音乐 / MV 作品</h3>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1vr7WzWEmz&page=1&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">1. @ (Original Music)</div>
+                    <div class="video-desc">Original MV & Music</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1YyaqzZEY5&page=1&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">2. 雨 (Rain)</div>
+                    <div class="video-desc">Original MV & Music</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer style="text-align: center; margin-top: 80px; color: #555; font-size: 0.8rem;">
+        &copy; 2026 Designed by He Xingyu | Street Lights Studio
+    </footer>
+
+</div>
+
+</body>
+</html>
