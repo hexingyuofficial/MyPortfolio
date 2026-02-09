@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>何星宇 | 游戏音频设计师 Portfolio</title>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-
     <style>
         :root {
             --bg-color: #0a0a0a; /* 极深黑 */
@@ -26,47 +22,31 @@
             color: var(--text-main);
             line-height: 1.6;
             padding-bottom: 100px;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* Vanta 背景层 */
-        #vanta-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* 放在最底层 */
-            pointer-events: none; /* 让鼠标穿透，不影响点击 */
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
-            position: relative;
-            z-index: 1;
         }
 
-        /* Header */
+        /* Header / 简历头部 */
         header {
-            border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+            border-bottom: 1px solid var(--border);
             padding-bottom: 40px;
             margin-bottom: 60px;
             text-align: center;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.9);
         }
 
-        /* 照片样式 */
+        /* 照片样式 - 赛博朋克风 */
         .profile-container {
             width: 150px;
             height: 150px;
             margin: 0 auto 25px auto;
             border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--accent), #0051ff);
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+            padding: 4px; /* 光环宽度 */
+            background: linear-gradient(135deg, var(--accent), #0051ff); /* 赛博光环 */
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4); /* 发光效果 */
         }
 
         .profile-img {
@@ -74,7 +54,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg-color);
+            border: 4px solid var(--bg-color); /* 内圈隔离 */
             background-color: #222;
             display: block;
         }
@@ -87,7 +67,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
         }
 
         .title {
@@ -96,8 +75,6 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            font-weight: 600;
         }
 
         .contact-info {
@@ -107,27 +84,9 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
-        /* 跳转按钮 */
-        .jump-btn {
-            display: inline-block;
-            padding: 10px 30px;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            background: rgba(0,0,0,0.5);
-        }
-        .jump-btn:hover {
-            background: var(--accent);
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
-        }
-
+        /* 模块通用标题 */
         h2 {
             font-size: 1.5rem;
             border-left: 4px solid var(--accent);
@@ -135,7 +94,6 @@
             margin: 60px 0 30px 0;
             color: #fff;
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         h3 {
@@ -145,15 +103,13 @@
             margin-top: 20px;
         }
 
-        /* 卡片背景 - 配合 NET 效果 */
+        /* 简历内容排版 */
         .resume-section {
-            background: rgba(20, 20, 20, 0.85); /* 稍微透明一点，让连线透出来 */
-            backdrop-filter: blur(5px);
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
             border: 1px solid var(--border);
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .skill-grid {
@@ -168,14 +124,17 @@
         .job-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #222; }
         .job-item:last-child { border-bottom: none; margin-bottom: 0; }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px; }
-        .company { font-size: 1.2rem; font-weight: bold; color: #fff; }
+        .company { font-size: 1.2rem; font-weight: bold; }
         .role { color: var(--accent); font-style: italic; margin-right: 10px; }
         .date { font-family: monospace; color: #666; }
         
         ul.job-desc { padding-left: 20px; color: var(--text-dim); }
         ul.job-desc li { margin-bottom: 8px; }
 
-        .portfolio-section { margin-top: 80px; }
+        /* 作品集部分 (PORTFOLIO) */
+        .portfolio-section {
+            margin-top: 80px;
+        }
         
         .portfolio-category-title {
             text-align: center;
@@ -183,7 +142,6 @@
             margin: 50px 0 30px 0;
             color: #fff;
             position: relative;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
         
         .portfolio-category-title::after {
@@ -193,7 +151,6 @@
             height: 3px;
             background: var(--accent);
             margin: 15px auto;
-            box-shadow: 0 0 10px var(--accent);
         }
 
         .video-grid {
@@ -203,26 +160,26 @@
         }
 
         .video-card {
-            background: rgba(17, 17, 17, 0.95);
+            background: #111;
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid #333;
-            transition: all 0.2s ease;
+            transition: transform 0.2s ease;
         }
 
         .video-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 242, 255, 0.1);
         }
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 比例 */
             height: 0;
             background: #000;
         }
 
+        /* 确保 iframe 填满容器 */
         .video-wrapper iframe, .video-wrapper video {
             position: absolute;
             top: 0;
@@ -231,31 +188,83 @@
             height: 100%;
         }
 
-        .video-info { padding: 15px; }
-        .video-title { font-weight: bold; color: #eee; margin-bottom: 5px; }
-        .video-desc { font-size: 0.85rem; color: #777; }
+        .video-info {
+            padding: 15px;
+        }
 
+        .video-title {
+            font-weight: bold;
+            color: #eee;
+            margin-bottom: 5px;
+        }
+
+        .video-desc {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* 打印适配 */
         @media print {
             body { background: #fff; color: #000; }
-            #vanta-bg { display: none; }
             .container { max-width: 100%; padding: 0; }
-            .resume-section { background: none; box-shadow: none; border-color: #ccc; color: #000; backdrop-filter: none; }
-            h1, h2, strong, .title { color: #000 !important; text-shadow: none; }
-            h1 { -webkit-text-fill-color: #000; }
-            .jump-btn { display: none; }
+            header, h2, .resume-section, .job-item { border-color: #000; color: #000 !important; background: none; }
+            h1 { background: none; -webkit-text-fill-color: #000; }
+            .title, .role, strong { color: #000 !important; }
+            .portfolio-section { display: none; } /* 打印时隐藏视频部分 */
+            .profile-container { border-radius: 0; padding: 0; background: none; box-shadow: none; width: 100px; height: 100px; border: 1px solid #ccc; }
+            .profile-img { border: none; }
+            
         }
         @media screen and (max-width: 768px) {
-            .container { padding: 20px 15px; }
+            /* 1. 收缩整体边距，手机上不需要那么多留白 */
+            .container {
+                padding: 20px 15px; /* 上下20px，左右15px */
+                max-width: 100%;
+            }
+
+            /* 2. 名字和标题改小，防止换行太难看 */
             h1 { font-size: 2.2rem; }
-            .video-grid, .skill-grid { grid-template-columns: 1fr !important; }
+            .title { font-size: 1rem; letter-spacing: 1px; }
+            h2 { font-size: 1.3rem; margin-top: 40px; margin-bottom: 20px; }
+            .portfolio-category-title { font-size: 1.6rem; margin-top: 40px; }
+
+            /* 3. 工作经历优化：公司名和时间分两行显示 */
+            .job-header {
+                flex-direction: column; /* 垂直排列 */
+                align-items: flex-start; /* 左对齐 */
+                gap: 4px; /* 稍微加点间距 */
+            }
+            .job-header .date {
+                font-size: 0.85rem;
+                opacity: 0.8;
+                margin-bottom: 5px; /* 让时间下面留点空 */
+            }
+
+            /* 4. 强制视频和技能卡片在手机上占满宽度 (单列显示) */
+            .video-grid, .skill-grid {
+                grid-template-columns: 1fr !important; /* 强制1列 */
+                gap: 20px;
+            }
+
+            /* 5. 联系方式微调 */
+            .contact-info {
+                font-size: 0.85rem;
+                gap: 10px; /* 间距缩小 */
+                flex-direction: column; /* 手机上竖着排联系方式可能更清楚，或者保持 wrap */
+            }
+            
+            /* 6. 照片稍微缩小一点 */
+            .profile-container {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div id="vanta-bg"></div>
-
 <div class="container">
+
     <header>
         <div class="profile-container">
             <img src="profile_cyber.jpg" alt="何星宇照片" class="profile-img">
@@ -269,10 +278,20 @@
         </div>
 
         <div style="margin-top: 25px;">
-            <a href="#portfolio" class="jump-btn">
+            <a href="#portfolio" style="
+                display: inline-block;
+                padding: 10px 30px;
+                border: 1px solid var(--accent);
+                color: var(--accent);
+                text-decoration: none;
+                border-radius: 50px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            " 
+            onmouseover="this.style.background='var(--accent)'; this.style.color='#000'"
+            onmouseout="this.style.background='transparent'; this.style.color='var(--accent)'">
                 ⬇️ 跳转至作品集 (View Portfolio)
             </a>
-        </div>
     </header>
 
     <section>
@@ -289,6 +308,9 @@
                     <br>
                     <strong>Game Engine:</strong>
                     <p>熟悉Unity/UE，能够进行音频组件挂载，资源管理等操作；能够独立在 UE5 蓝图里实现复杂的音频功能；能够编写脚本辅助管理。</p>
+                    <br>
+                    <strong>Record & Foley:</strong>
+                    <p>熟悉录音棚硬件操作，能够进行拟音以及人声录制工作。</p>
                 </div>
 
                 <div class="skill-item">
@@ -300,6 +322,12 @@
                     <h3> 综合创作</h3>
                     <strong>Music & Creative:</strong>
                     <p>具备词曲创作、编曲、混音及母带处理的全流程能力，有总体音频风格化设计能力。</p>
+                    <br>
+                    <strong>Others:</strong>
+                    <p>具备视频剪辑能力，基础的特效和导演能力。</p>
+                    <p>具备不错的英语能力，CET-6。</p>
+                    <p>有基础代码能力，可完成部分实用的脚本编写。</p>
+                    <p>热爱游戏，涉猎广泛的老玩家，有足够的经验和审美。</p>
                 </div>
             </div>
         </div>
@@ -315,8 +343,8 @@
                     <span class="date">2024.10 - 至今</span>
                 </div>
                 <ul class="job-desc">
-                    <li><strong>全流程音乐制作:</strong> 创立独立音乐厂牌，主导多张专辑的策划与制作。</li>
-                    <li><strong>视觉统筹:</strong> 自编自导 MV 拍摄与剪辑，协调视觉艺术与听觉体验的统一。</li>
+                    <li><strong>全流程音乐制作:</strong> 创立独立音乐厂牌，主导多张专辑的策划与制作。极大提升了对不同音乐风格及合成器 (Synthesizers) 的驾驭能力以及整体音乐风格的企划能力。</li>
+                    <li><strong>视觉统筹:</strong> 自编自导 MV 拍摄与剪辑，协调视觉艺术与听觉体验的统一，锻炼了跨领域的项目策划、交流与执行能力。</li>
                 </ul>
             </div>
 
@@ -330,23 +358,40 @@
                 </div>
                 <div style="margin-bottom:10px; font-weight:bold; color:#eee;">项目：《万龙觉醒》(Call of Dragons) - SLG</div>
                 <ul class="job-desc">
-                    <li><strong>架构搭建 (0 to 1):</strong> 主导制定音频风格指南，搭建 Wwise 工程架构。</li>
-                    <li><strong>动态混音:</strong> 设计 HDR 与 State 混音系统，解决同屏战斗听觉掩蔽问题。</li>
-                    <li><strong>核心资产制作:</strong> 负责全量级音效制作（魔法、界面、环境音）。</li>
+                    <li><strong>架构搭建 (0 to 1):</strong> 主导制定音频风格指南 (Style Guide)，并从零搭建 Wwise 工程架构，确保了后续大规模资产管理的规范性。</li>
+                    <li><strong>动态混音:</strong> 设计并实现复杂的 HDR 与 State 混音系统，有效解决了千人同屏战斗时的听觉掩蔽问题。</li>
+                    <li><strong>核心资产制作:</strong> 负责全量级音效制作。设计了具有高辨识度的魔法与种族技能音效；不同界面的环境音制作；统筹外包对接与多语言语音优化。</li>
                 </ul>
+                <div style="margin-top:15px; margin-bottom:10px; font-weight:bold; color:#eee;">项目：《万国觉醒》(Rise of Kingdoms) - SLG</div>
+                <ul class="job-desc">
+                    <li><strong>版本维护:</strong> 独立负责成熟期项目的版本音频迭代，保证在线运营的高稳定性。</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>教育背景 Education</h2>
+        <div class="resume-section">
+            <div class="job-header">
+                <div>
+                    <span class="company">华中科技大学 (985/211)</span>
+                    <span class="role">| 电子信息系 (本科)</span>
+                </div>
+                <span class="date">2017.09 - 2021.07</span>
             </div>
         </div>
     </section>
 
     <section class="portfolio-section" id="portfolio">
         <h1 class="portfolio-category-title">PORTFOLIO 作品集</h1>
-        
-        <h3>一、最近的练习 (Recent Practice)</h3>
+
+         </div>
+        <h3>一、最近的练习</h3>
         <div class="video-grid">
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115991581300501&bvid=BV15n6HBSE8q&cid=35740386898&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                   <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115991581300501&bvid=BV15n6HBSE8q&cid=35740386898&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
+        
                 <div class="video-info">
                    <div class="video-title">1.【UE5】分射线检测+材质识别的空间大小探测系统</div>
                    <div class="video-desc">Dynamic Bubble System</div>
@@ -355,17 +400,18 @@
 
              <div class="video-card">
                 <div class="video-wrapper">
-                   <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116008442468466&bvid=BV1sKfXBKEJ3&cid=35803826256&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                   <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116008442468466&bvid=BV1sKfXBKEJ3&cid=35803826256&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <div class="video-info">
                     <div class="video-title">2.主流空间音频方案实现与对比</div>
-                    <div class="video-desc">Steam Audio vs. Wwise</div>
+                    <div class="video-desc">Steam Audio vs. Wwise: The Ultimate Spatial Audio Showdown</div>
                 </div>
             </div>
 
+
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116022770145086&bvid=BV1VjFrzXEiy&cid=35861039699&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116022770145086&bvid=BV1VjFrzXEiy&cid=35861039699&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <div class="video-info">
                     <div class="video-title">3.绝区零角色技能音效练习</div>
@@ -375,50 +421,54 @@
 
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116041057310491&bvid=BV1CMcgzDE1Z&cid=35940993543&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116041057310491&bvid=BV1CMcgzDE1Z&cid=35940993543&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <div class="video-info">
                     <div class="video-title">4.锦衣卫战斗场景音效练习</div>
-                    <div class="video-desc">Combat Sound Design Redesign</div>
+                    <div class="video-desc">Jinyiwei - Combat Sound Design Redesign</div>
                 </div>
             </div>
 
             <div class="video-card">
                 <div class="video-wrapper">
-                   <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115938900909834&bvid=BV1n7BfB8E17&cid=35547121870&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                   <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115938900909834&bvid=BV1n7BfB8E17&cid=35547121870&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
+        
                 <div class="video-info">
                    <div class="video-title">5.分角色TTS直接导入wwise脚本</div>
                    <div class="video-desc">Co-Pilot: Gemini</div>
                 </div>
             </div>
+        
+           
 
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115945997606377&bvid=BV1omz3B4EXs&cid=35573663191&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115945997606377&bvid=BV1omz3B4EXs&cid=35573663191&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <div class="video-info">
                     <div class="video-title">6.科幻枪械练习</div>
-                    <div class="video-desc">Weapon Sound Synthesis</div>
+                    <div class="video-desc">Weapon Sound Synthesis: Multi-Layered Energy Pulse</div>
                 </div>
             </div>
     
             <div class="video-card">
                 <div class="video-wrapper">
-                 <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115954000404035&bvid=BV1qjzSBAEiv&cid=35599289701&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                 <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115954000404035&bvid=BV1qjzSBAEiv&cid=35599289701&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <div class="video-info">
                     <div class="video-title">7.wwise脚步声分地面材质/鞋子材质与走路速度练习</div>
-                    <div class="video-desc">Footstep System Design</div>
+                    <div class="video-desc">Weapon Sound Synthesis: Multi-Layered Energy Pulse</div>
                 </div>
             </div>
-        </div>
 
+        </div>
         <h3>二、已上线的音效制作资产 (Game Audio)</h3>
         <div class="video-grid">
+            
             <div class="video-card">
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=113446913905340&bvid=BV1mHDZYrE16&cid=26669025443&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113446913905340&bvid=BV1mHDZYrE16&cid=26669025443&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <div class="video-info">
                     <div class="video-title">1. 游戏 CG 音效制作</div>
@@ -475,7 +525,13 @@
                 </div>
             </div>
         </div>
-
+<div>
+    <ul class="job-desc">
+        <br>
+        
+                </ul>
+</div>
+</div>
         <h3>三、影视音效制作 (Linear Media)</h3>
         <div class="video-grid">
             <div class="video-card">
@@ -487,6 +543,7 @@
                     <div class="video-desc">Full Mix (Music + SFX)</div>
                 </div>
             </div>
+
         </div>
 
         <h3>四、个人音乐 / MV 作品</h3>
@@ -517,27 +574,8 @@
     <footer style="text-align: center; margin-top: 80px; color: #555; font-size: 0.8rem;">
         &copy; 2026 Designed by He Xingyu | Street Lights Studio
     </footer>
-</div>
 
-<script>
-    VANTA.NET({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        // --- Bro 特调参数 (稀疏版) ---
-        color: 0x00f2ff,       /* 赛博蓝节点 */
-        backgroundColor: 0x0a0a0a, /* 深黑背景 */
-        points: 8.00,          /* 关键！默认是10-15，调到 8 就稀疏了，只有几根核心线 */
-        maxDistance: 24.00,    /* 连线距离稍微大一点，保证稀疏的点也能连上 */
-        spacing: 20.00,        /* 空间拉开一点 */
-        showDots: true         /* 显示节点点 */
-    })
-</script>
+</div>
 
 </body>
 </html>
