@@ -154,9 +154,9 @@
         }
 
         .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 25px;
+         display: grid;
+         grid-template-columns: repeat(2, 1fr); /* 强制锁定为一排两列，大小固定 */
+         gap: 25px;
         }
 
         .video-card {
@@ -383,9 +383,51 @@
 
     <section class="portfolio-section" id="portfolio">
         <h1 class="portfolio-category-title">PORTFOLIO 作品集</h1>
+        <h3>一、音效redesign</h3>
+        <div class="video-grid">
+             <div class="video-card">
+                <div class="video-wrapper">
+                  <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116118769376775&bvid=BV1F2fqBXE9G&cid=36230925670&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">1.《湮灭之潮》实机演示音效redesign</div>
+                    <div class="video-desc">Tides of Annihilation - Combat Sound Redesign</div>
+                </div>
+            </div>
 
-         </div>
-        <h3>一、最近的练习</h3>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116022770145086&bvid=BV1VjFrzXEiy&cid=35861039699&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">2.《绝区零》角色技能音效redesign</div>
+                    <div class="video-desc">Zenless Zone Zero - Combat Sound Redesign</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116041057310491&bvid=BV1CMcgzDE1Z&cid=35940993543&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">3.《锦衣卫》战斗场景音效redesign</div>
+                    <div class="video-desc">Jinyiwei - Combat Sound Design Redesign</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115945997606377&bvid=BV1omz3B4EXs&cid=36231384981&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">4.《Apex》科幻枪械音效redesign</div>
+                    <div class="video-desc">Weapon Sound Synthesis: Multi-Layered Energy Pulse</div>
+                </div>
+            </div>
+
+        </div>
+        <h3>二、中间件与游戏引擎技术</h3>
         <div class="video-grid">
             <div class="video-card">
                 <div class="video-wrapper">
@@ -408,62 +450,29 @@
                 </div>
             </div>
 
-
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116022770145086&bvid=BV1VjFrzXEiy&cid=35861039699&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">3.绝区零角色技能音效练习</div>
-                    <div class="video-desc">Zenless Zone Zero - Combat Sound Redesign</div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116041057310491&bvid=BV1CMcgzDE1Z&cid=35940993543&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">4.锦衣卫战斗场景音效练习</div>
-                    <div class="video-desc">Jinyiwei - Combat Sound Design Redesign</div>
-                </div>
-            </div>
-
             <div class="video-card">
                 <div class="video-wrapper">
                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115938900909834&bvid=BV1n7BfB8E17&cid=35547121870&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
         
                 <div class="video-info">
-                   <div class="video-title">5.分角色TTS直接导入wwise脚本</div>
+                   <div class="video-title">3.分角色TTS直接导入wwise脚本</div>
                    <div class="video-desc">Co-Pilot: Gemini</div>
                 </div>
             </div>
         
-           
-
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115945997606377&bvid=BV1omz3B4EXs&cid=35573663191&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                </div>
-                <div class="video-info">
-                    <div class="video-title">6.科幻枪械练习</div>
-                    <div class="video-desc">Weapon Sound Synthesis: Multi-Layered Energy Pulse</div>
-                </div>
-            </div>
-    
             <div class="video-card">
                 <div class="video-wrapper">
                  <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115954000404035&bvid=BV1qjzSBAEiv&cid=35599289701&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <div class="video-info">
-                    <div class="video-title">7.wwise脚步声分地面材质/鞋子材质与走路速度练习</div>
+                    <div class="video-title">4.wwise脚步声分地面材质/鞋子材质与走路速度练习</div>
                     <div class="video-desc">Weapon Sound Synthesis: Multi-Layered Energy Pulse</div>
                 </div>
             </div>
 
         </div>
-        <h3>二、已上线的音效制作资产 (Game Audio)</h3>
+        <h3>三、已上线音效资产</h3>
         <div class="video-grid">
             
             <div class="video-card">
@@ -525,14 +534,9 @@
                 </div>
             </div>
         </div>
-<div>
-    <ul class="job-desc">
-        <br>
-        
-                </ul>
-</div>
-</div>
-        <h3>三、影视音效制作 (Linear Media)</h3>
+
+
+        <h3>四、影视音效制作 (Linear Media)</h3>
         <div class="video-grid">
             <div class="video-card">
                 <div class="video-wrapper">
@@ -546,7 +550,7 @@
 
         </div>
 
-        <h3>四、个人音乐 / MV 作品</h3>
+        <h3>五、个人音乐 / MV 作品</h3>
         <div class="video-grid">
             <div class="video-card">
                 <div class="video-wrapper">
